@@ -3,6 +3,8 @@ package com.launchcode.crazyweatherapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="user")
 public class UserEntity {
@@ -12,14 +14,26 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @Column(name="user_name", length= 255)
+    @Column(name="user_name", length= 255,unique = true,nullable = false)
     private String userName;
 
-    @Column(name="email",length=255)
+    @Column(name="email",length=255,unique = true,nullable = false)
     private String email;
 
-    @Column (name="password",length=255)
+    @Column (name="password",length=255,nullable = false)
     private String password;
+
+
+    public List<CityEntity> getUserCities() {
+        return userCities;
+    }
+
+    public void setUserCities(List<CityEntity> userCities) {
+        this.userCities = userCities;
+    }
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<CityEntity> userCities;
 
     public UserEntity(int userId, String username, String email, String password) {
         this.userId = userId;
