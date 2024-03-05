@@ -115,11 +115,6 @@ return new ArrayList<>();
 
     }
 
-    @Override
-    public void deleteCityOfAUser(String userId, String cityName) {
-
-    }
-
 
 }
 
