@@ -38,8 +38,7 @@ public class UserController {
 
 
     @PostMapping(path = "/{userId}/cities")
-    public UserEntity saveCitiesForDashBoardToUser(@RequestBody UserCityDTO userCityDTO, @PathVariable String userId) {
-
+    public List<CityResponse> saveCitiesForDashBoardToUser(@RequestBody UserCityDTO userCityDTO, @PathVariable String userId) {
        return  userService.saveCities(userCityDTO, userId);
     }
 

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -85,7 +86,7 @@ private PasswordEncoder passwordEncoder;
     }
 
     @Override
-    public UserEntity saveCities(UserCityDTO userCityDTO, String userId) {
+    public List<CityResponse> saveCities(UserCityDTO userCityDTO, String userId) {
 
               Optional<UserEntity> userEntity =  userRepo.findById(Integer.valueOf(userId));
 
@@ -96,11 +97,12 @@ private PasswordEncoder passwordEncoder;
             return city;
         }).collect(Collectors.toList());
               if(userEntity.isPresent()){
-                  userEntity.get().setUserCities(cityEntities);
-                 return  userRepo.save(userEntity.get());
+                return   cityRepo.saveAll(cityEntities).stream().map(it->{
+                    return new CityResponse(it.getUserCityName(),it.getUserCityId());
+                  }).toList();
               }
 
-              return null;
+return new ArrayList<>();
     }
 
     @Override

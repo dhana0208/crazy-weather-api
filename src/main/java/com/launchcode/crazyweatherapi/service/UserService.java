@@ -18,7 +18,7 @@ public interface UserService {
 
      LoginResponse loginUser(LoginDTO loginDTO);
 
-     UserEntity saveCities(UserCityDTO userCityDTO, String userId);
+     List<CityResponse>  saveCities(UserCityDTO userCityDTO, String userId);
 
      List<CityResponse> getCities(String userId);
 
