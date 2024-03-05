@@ -51,11 +51,5 @@ public class UserController {
        return  ResponseEntity.ok(userService.getCities(userId));
     }
 
-
-    @DeleteMapping(path = "/{cityId}")
-    public void deleteCityByUserId(@PathVariable String userId, @PathVariable String cityName) {
-        userService.deleteCityOfAUser(userId, cityName);
-    }
-
 }
 

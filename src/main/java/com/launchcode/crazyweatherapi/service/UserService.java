@@ -22,5 +22,4 @@ public interface UserService {
 
      List<CityResponse> getCities(String userId);
 
-     void deleteCityOfAUser(String userId, String cityName);
 }
